@@ -20,7 +20,7 @@ export const routes: Routes = [
 
     { path: 'departments/listar', component: DepartmentListarComponent },
     { path: 'departments/crear', component: DepartmentCrearComponent },
-    { path: 'departments/editar', component: DepartmentEditarComponent },
+    { path: 'departments/editar/:id', component: DepartmentEditarComponent },
 
     { path: 'jobTitles/listar', component: JobTitlesListarComponent },
     { path: 'jobTitles/crear', component: JobTitlesCrearComponent },
