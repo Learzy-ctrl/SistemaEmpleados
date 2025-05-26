@@ -1,0 +1,43 @@
+.table th {
+  font-weight: 600;
+  background-color: #f8f9fa;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.table-responsive {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(13, 110, 253, 0.05);
+}
+
+/* Estilos específicos para la tabla de empleados */
+.employee-table th:nth-child(1) { width: 5%; }
+.employee-table th:nth-child(2) { width: 20%; }
+.employee-table th:nth-child(3) { width: 20%; }
+.employee-table th:nth-child(4) { width: 15%; }
+.employee-table th:nth-child(5) { width: 15%; }
+.employee-table th:nth-child(6) { width: 15%; }
+.employee-table th:nth-child(7) { width: 10%; }
+
+/* Paginación */
+.pagination .page-item.active .page-link {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.pagination .page-link {
+  color: #0d6efd;
+  cursor: pointer;
+}
+
+/* Buscador */
+.search-box {
+  max-width: 300px;
+}

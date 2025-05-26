@@ -1,0 +1,39 @@
+.card {
+  border-radius: 0.5rem;
+}
+
+.card-header {
+  border-radius: 0.5rem 0.5rem 0 0 !important;
+}
+
+.form-control.is-invalid, .form-select.is-invalid {
+  border-color: #dc3545;
+  background-image: none;
+}
+
+.form-control.is-valid, .form-select.is-valid {
+  border-color: #198754;
+  background-image: none;
+}
+
+.invalid-feedback {
+  display: block;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+/* Estilos específicos para el formulario de empleados */
+.employee-form .form-label {
+  font-weight: 500;
+}
+
+.employee-form .card-header {
+  background-color: #0d6efd;
+}
+
+.employee-form select.form-select {
+  cursor: pointer;
+}

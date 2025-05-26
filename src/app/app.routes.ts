@@ -16,7 +16,7 @@ export const routes: Routes = [
     { path: 'inicio', component: InicioComponent },
     { path: 'employees/listar', component: EmployeeListarComponent },
     { path: 'employees/crear', component: EmployeeCrearComponent },
-    { path: 'employees/editar', component: EmployeeEditarComponent },
+    { path: 'employees/editar/:id', component: EmployeeEditarComponent },
 
     { path: 'departments/listar', component: DepartmentListarComponent },
     { path: 'departments/crear', component: DepartmentCrearComponent },
@@ -24,5 +24,5 @@ export const routes: Routes = [
 
     { path: 'jobTitles/listar', component: JobTitlesListarComponent },
     { path: 'jobTitles/crear', component: JobTitlesCrearComponent },
-    { path: 'jobTitles/editar', component: JobTitlesEditarComponent },
+    { path: 'jobTitles/editar/:id', component: JobTitlesEditarComponent },
 ];

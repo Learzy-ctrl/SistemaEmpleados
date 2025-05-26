@@ -1,1 +1,85 @@
-<p>listar works!</p>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="bi bi-people-fill me-2"></i>Empleados</h2>
+    <a routerLink="/employees/crear" class="btn btn-success">
+      <i class="bi bi-plus-circle"></i> Nuevo Empleado
+    </a>
+  </div>
+
+
+  <div *ngIf="isLoading" class="text-center my-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+    <p class="mt-2">Cargando empleados...</p>
+  </div>
+
+  <div *ngIf="!isLoading" class="card shadow-sm">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th>Teléfono</th>
+              <th>Fecha Contratación</th>
+              <th>Salario</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let emp of paginatedEmployees()">
+              <td>{{ emp.employeeId }}</td>
+              <td>{{ emp.firstName }} {{ emp.lastName }}</td>
+              <td>{{ emp.email }}</td>
+              <td>{{ emp.phoneNumber }}</td>
+              <td>{{ emp.hireDate | date:'dd/MM/yyyy' }}</td>
+              <td>{{ emp.salary | currency:'USD':'symbol':'1.2-2' }}</td>
+              <td>
+                <div class="d-flex gap-2">
+
+                  <button  class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-eye me-1"></i>Ver Detalle
+                  </button>
+
+                  <a [routerLink]="['/employees/editar', emp.employeeId]" class="btn btn-sm btn-outline-warning">
+                    <i class="bi bi-pencil"></i> Editar
+                  </a>
+                  <button (click)="deleteEmployee(emp.employeeId)" class="btn btn-sm btn-outline-danger">
+                    <i class="bi bi-trash"></i> Eliminar
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr *ngIf="filteredEmployees().length === 0">
+              <td colspan="7" class="text-center text-muted py-4">
+                No se encontraron empleados
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <nav *ngIf="totalPages() > 1" aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <a class="page-link" (click)="changePage(currentPage - 1)" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li *ngFor="let page of [].constructor(totalPages()); let i = index" class="page-item"
+            [class.active]="currentPage === i + 1">
+            <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+          </li>
+          <li class="page-item" [class.disabled]="currentPage === totalPages()">
+            <a class="page-link" (click)="changePage(currentPage + 1)" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

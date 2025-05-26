@@ -23,3 +23,5 @@ body {
   font-weight: 500;
   transition: all 0.2s ease;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

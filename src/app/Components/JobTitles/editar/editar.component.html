@@ -1,1 +1,67 @@
-<p>editar works!</p>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h3 class="mb-0"><i class="bi bi-pencil-square me-2"></i>Editar Puesto de Trabajo</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="jobTitleForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="mb-3">
+              <label for="jobTitleId" class="form-label">ID del Puesto</label>
+              <input type="text" 
+                     class="form-control" 
+                     id="jobTitleId"
+                     formControlName="jobTitleId"
+                     readonly>
+            </div>
+
+            <div class="mb-3">
+              <label for="jobTitle" class="form-label">Nombre del Puesto</label>
+              <input type="text" 
+                     class="form-control" 
+                     id="jobTitle"
+                     formControlName="jobTitle"
+                     [class.is-invalid]="f['jobTitle'].touched && f['jobTitle'].invalid"
+                     [class.is-valid]="f['jobTitle'].touched && f['jobTitle'].valid">
+              
+              <div *ngIf="f['jobTitle'].touched && f['jobTitle'].invalid" class="invalid-feedback">
+                <div *ngIf="f['jobTitle'].errors?.['required']">
+                  El nombre del puesto es requerido
+                </div>
+                <div *ngIf="f['jobTitle'].errors?.['minlength']">
+                  Mínimo 3 caracteres
+                </div>
+                <div *ngIf="f['jobTitle'].errors?.['maxlength']">
+                  Máximo 50 caracteres
+                </div>
+                <div *ngIf="f['jobTitle'].errors?.['pattern']">
+                  Solo letras y espacios
+                </div>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button type="button" 
+                      class="btn btn-outline-secondary me-md-2"
+                      routerLink="/jobTitles/listar">
+                <i class="bi bi-x-circle"></i> Cancelar
+              </button>
+              <button type="submit" 
+                      class="btn btn-primary"
+                      [disabled]="isEditing">
+                <span *ngIf="!isEditing">
+                  <i class="bi bi-save"></i> Guardar Cambios
+                </span>
+                <span *ngIf="isEditing">
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Guardando...
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

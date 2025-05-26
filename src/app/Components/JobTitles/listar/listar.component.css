@@ -1,0 +1,31 @@
+.table th {
+  font-weight: 600;
+  background-color: #f8f9fa;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.table-responsive {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(13, 110, 253, 0.05);
+}
+
+/* Estilos específicos para la tabla de puestos */
+.job-title-table {
+  margin-top: 1rem;
+}
+
+.job-title-table th:first-child {
+  width: 15%;
+}
+
+.job-title-table th:nth-child(2) {
+  width: 55%;
+}

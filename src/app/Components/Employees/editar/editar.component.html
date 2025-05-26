@@ -1,1 +1,224 @@
-<p>editar works!</p>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h3 class="mb-0"><i class="bi bi-person-lines-fill me-2"></i>Editar Empleado</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="employeeId" class="form-label">ID del Empleado</label>
+                  <input type="text" 
+                        class="form-control" 
+                        id="employeeId"
+                        formControlName="employeeId"
+                        readonly>
+                </div>
+
+                <div class="mb-3">
+                  <label for="firstName" class="form-label">Nombres</label>
+                  <input type="text" 
+                        class="form-control" 
+                        id="firstName"
+                        formControlName="firstName"
+                        [class.is-invalid]="f['firstName'].touched && f['firstName'].invalid"
+                        [class.is-valid]="f['firstName'].touched && f['firstName'].valid">
+                  
+                  <div *ngIf="f['firstName'].touched && f['firstName'].invalid" class="invalid-feedback">
+                    <div *ngIf="f['firstName'].errors?.['required']">
+                      Los nombres son requeridos
+                    </div>
+                    <div *ngIf="f['firstName'].errors?.['minlength']">
+                      Mínimo 2 caracteres
+                    </div>
+                    <div *ngIf="f['firstName'].errors?.['maxlength']">
+                      Máximo 50 caracteres
+                    </div>
+                    <div *ngIf="f['firstName'].errors?.['pattern']">
+                      Solo letras y espacios
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="lastName" class="form-label">Apellidos</label>
+                  <input type="text" 
+                        class="form-control" 
+                        id="lastName"
+                        formControlName="lastName"
+                        [class.is-invalid]="f['lastName'].touched && f['lastName'].invalid"
+                        [class.is-valid]="f['lastName'].touched && f['lastName'].valid">
+                  
+                  <div *ngIf="f['lastName'].touched && f['lastName'].invalid" class="invalid-feedback">
+                    <div *ngIf="f['lastName'].errors?.['required']">
+                      Los apellidos son requeridos
+                    </div>
+                    <div *ngIf="f['lastName'].errors?.['minlength']">
+                      Mínimo 2 caracteres
+                    </div>
+                    <div *ngIf="f['lastName'].errors?.['maxlength']">
+                      Máximo 50 caracteres
+                    </div>
+                    <div *ngIf="f['lastName'].errors?.['pattern']">
+                      Solo letras y espacios
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" 
+                        class="form-control" 
+                        id="email"
+                        formControlName="email"
+                        [class.is-invalid]="f['email'].touched && f['email'].invalid"
+                        [class.is-valid]="f['email'].touched && f['email'].valid">
+                  
+                  <div *ngIf="f['email'].touched && f['email'].invalid" class="invalid-feedback">
+                    <div *ngIf="f['email'].errors?.['required']">
+                      El email es requerido
+                    </div>
+                    <div *ngIf="f['email'].errors?.['email']">
+                      Ingrese un email válido
+                    </div>
+                    <div *ngIf="f['email'].errors?.['maxlength']">
+                      Máximo 100 caracteres
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="phoneNumber" class="form-label">Teléfono</label>
+                  <input type="text" 
+                        class="form-control" 
+                        id="phoneNumber"
+                        formControlName="phoneNumber"
+                        [class.is-invalid]="f['phoneNumber'].touched && f['phoneNumber'].invalid"
+                        [class.is-valid]="f['phoneNumber'].touched && f['phoneNumber'].valid">
+                  
+                  <div *ngIf="f['phoneNumber'].touched && f['phoneNumber'].invalid" class="invalid-feedback">
+                    <div *ngIf="f['phoneNumber'].errors?.['required']">
+                      El teléfono es requerido
+                    </div>
+                    <div *ngIf="f['phoneNumber'].errors?.['pattern']">
+                      Solo números
+                    </div>
+                    <div *ngIf="f['phoneNumber'].errors?.['minlength']">
+                      Mínimo 9 caracteres
+                    </div>
+                    <div *ngIf="f['phoneNumber'].errors?.['maxlength']">
+                      Máximo 15 caracteres
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="hireDate" class="form-label">Fecha de Contratación</label>
+                  <input type="date" 
+                        class="form-control" 
+                        id="hireDate"
+                        formControlName="hireDate"
+                        [class.is-invalid]="f['hireDate'].touched && f['hireDate'].invalid"
+                        [class.is-valid]="f['hireDate'].touched && f['hireDate'].valid">
+                  
+                  <div *ngIf="f['hireDate'].touched && f['hireDate'].invalid" class="invalid-feedback">
+                    <div *ngIf="f['hireDate'].errors?.['required']">
+                      La fecha es requerida
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="salary" class="form-label">Salario ($)</label>
+                  <input type="number" 
+                        step="0.01"
+                        class="form-control" 
+                        id="salary"
+                        formControlName="salary"
+                        [class.is-invalid]="f['salary'].touched && f['salary'].invalid"
+                        [class.is-valid]="f['salary'].touched && f['salary'].valid">
+                  
+                  <div *ngIf="f['salary'].touched && f['salary'].invalid" class="invalid-feedback">
+                    <div *ngIf="f['salary'].errors?.['required']">
+                      El salario es requerido
+                    </div>
+                    <div *ngIf="f['salary'].errors?.['pattern']">
+                      Formato inválido (ej. 1500.50)
+                    </div>
+                    <div *ngIf="f['salary'].errors?.['min']">
+                      Debe ser mayor o igual a 0
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="departmentId" class="form-label">Departamento</label>
+                  <select class="form-select"
+                          id="departmentId"
+                          formControlName="departmentId"
+                          [class.is-invalid]="f['departmentId'].touched && f['departmentId'].invalid"
+                          [class.is-valid]="f['departmentId'].touched && f['departmentId'].valid">
+                    <option value="">Seleccione un departamento</option>
+                    <option *ngFor="let dept of departments" [value]="dept.departmentId">
+                      {{ dept.departmentName }}
+                    </option>
+                  </select>
+                  
+                  <div *ngIf="f['departmentId'].touched && f['departmentId'].invalid" class="invalid-feedback">
+                    <div *ngIf="f['departmentId'].errors?.['required']">
+                      Seleccione un departamento
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="jobTitleId" class="form-label">Puesto de Trabajo</label>
+                  <select class="form-select"
+                          id="jobTitleId"
+                          formControlName="jobTitleId"
+                          [class.is-invalid]="f['jobTitleId'].touched && f['jobTitleId'].invalid"
+                          [class.is-valid]="f['jobTitleId'].touched && f['jobTitleId'].valid">
+                    <option value="">Seleccione un puesto</option>
+                    <option *ngFor="let job of jobTitles" [value]="job.jobTitleId">
+                      {{ job.jobTitle }}
+                    </option>
+                  </select>
+                  
+                  <div *ngIf="f['jobTitleId'].touched && f['jobTitleId'].invalid" class="invalid-feedback">
+                    <div *ngIf="f['jobTitleId'].errors?.['required']">
+                      Seleccione un puesto de trabajo
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+              <button type="button" 
+                      class="btn btn-outline-secondary me-md-2"
+                      routerLink="/employees/listar">
+                <i class="bi bi-x-circle"></i> Cancelar
+              </button>
+              <button type="submit" 
+                      class="btn btn-primary"
+                      [disabled]="isEditing">
+                <span *ngIf="!isEditing">
+                  <i class="bi bi-save"></i> Guardar Cambios
+                </span>
+                <span *ngIf="isEditing">
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Guardando...
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
