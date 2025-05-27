@@ -3,6 +3,8 @@ import { DepartmentsServiceService } from '../../../Services/Departments/departm
 import { Department } from '../../../Models/Department';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { DetalleComponent } from '../detalle/detalle.component';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,7 +18,11 @@ export class ListarComponent implements OnInit {
   departments: Department[] = [];
   isLoading: boolean = true;
 
-  constructor(private departmentService: DepartmentsServiceService) {}
+
+  constructor(
+    private departmentService: DepartmentsServiceService,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.loadDepartments();
@@ -71,15 +77,22 @@ export class ListarComponent implements OnInit {
     }
   }
 
-  private showAlert(icon: 'success' | 'error' | 'warning' | 'info', 
-                   title: string, 
-                   text: string): void {
+  private showAlert(icon: 'success' | 'error' | 'warning' | 'info',
+    title: string,
+    text: string): void {
     Swal.fire({
       icon,
       title,
       text,
       confirmButtonColor: '#0d6efd',
       timer: icon === 'success' ? 2000 : 3000
+    });
+  }
+
+  showDetail(department: Department): void {
+    this.dialog.open(DetalleComponent, {
+      width: '1000px',
+      data: { department }
     });
   }
 }

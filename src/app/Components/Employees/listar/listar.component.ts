@@ -4,24 +4,36 @@ import { Employee } from '../../../Models/Employee';
 import { RouterLink } from '@angular/router';
 import { CommonModule, DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
+import { MatDialog } from '@angular/material/dialog';
+import { DetalleComponent } from '../detalle/detalle.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-listar',
   standalone: true,
-  imports: [CommonModule, RouterLink, DatePipe],
+  imports: [
+    CommonModule,
+    RouterLink,
+    DatePipe,
+    MatButtonModule,
+    MatIconModule
+  ],
   templateUrl: './listar.component.html',
   styleUrls: ['./listar.component.css']
 })
 export class ListarComponent implements OnInit {
-  
+
   employees: Employee[] = [];
   isLoading: boolean = true;
   currentPage: number = 1;
   itemsPerPage: number = 10;
   searchTerm: string = '';
 
+
   constructor(
-    private employeeService: EmployeesServiceService
-  ) {}
+    private employeeService: EmployeesServiceService,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.loadEmployees();
@@ -57,7 +69,7 @@ export class ListarComponent implements OnInit {
         this.employeeService.eliminar(id).subscribe({
           next: (response) => {
             this.handleResponse(response);
-            this.loadEmployees(); 
+            this.loadEmployees();
           },
           error: (err) => {
             const errorMsg = err.error?.mensaje || 'Error al eliminar el empleado';
@@ -70,7 +82,7 @@ export class ListarComponent implements OnInit {
 
   filteredEmployees(): Employee[] {
     if (!this.searchTerm) return this.employees;
-    return this.employees.filter(emp => 
+    return this.employees.filter(emp =>
       emp.firstName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
       emp.lastName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
       emp.email.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
@@ -99,15 +111,22 @@ export class ListarComponent implements OnInit {
     }
   }
 
-  private showAlert(icon: 'success' | 'error' | 'warning' | 'info', 
-                   title: string, 
-                   text: string): void {
+  private showAlert(icon: 'success' | 'error' | 'warning' | 'info',
+    title: string,
+    text: string): void {
     Swal.fire({
       icon,
       title,
       text,
       confirmButtonColor: '#0d6efd',
       timer: icon === 'success' ? 2000 : 3000
+    });
+  }
+
+  showDetail(employee: Employee): void {
+    this.dialog.open(DetalleComponent, {
+      width: '600px',
+      data: { employee }
     });
   }
 }

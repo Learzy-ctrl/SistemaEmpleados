@@ -8,7 +8,7 @@
 
 .form-control.is-invalid {
   border-color: #dc3545;
-  background-image: none; /* Remueve el icono por defecto */
+  background-image: none;
 }
 
 .form-control.is-valid {

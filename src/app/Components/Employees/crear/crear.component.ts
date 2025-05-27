@@ -64,7 +64,7 @@ export class CrearComponent {
       salary: ['', [
         Validators.required,
         Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/),
-        Validators.min(0)
+        Validators.min(1)
       ]],
       departmentId: ['', [
         Validators.required

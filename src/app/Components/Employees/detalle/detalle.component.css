@@ -1,0 +1,18 @@
+mat-card {
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+mat-list-item {
+  height: auto !important;
+  margin: 0.5rem 0;
+}
+
+mat-list-item span[matListItemTitle] {
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+mat-list-item span[matListItemLine] {
+  color: rgba(0, 0, 0, 0.6);
+}

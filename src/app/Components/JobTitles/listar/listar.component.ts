@@ -3,6 +3,8 @@ import { JobTitlesServiceService } from '../../../Services/JobTitles/job-titles-
 import { JobTitle } from '../../../Models/JobTitle';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { DetalleComponent } from '../detalle/detalle.component';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,7 +18,10 @@ export class ListarComponent implements OnInit {
   jobTitles: JobTitle[] = [];
   isLoading: boolean = true;
 
-  constructor(private jobTitleService: JobTitlesServiceService) {}
+  constructor(
+    private jobTitleService: JobTitlesServiceService,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.loadJobTitles();
@@ -71,15 +76,21 @@ export class ListarComponent implements OnInit {
     }
   }
 
-  private showAlert(icon: 'success' | 'error' | 'warning' | 'info', 
-                   title: string, 
-                   text: string): void {
+  private showAlert(icon: 'success' | 'error' | 'warning' | 'info',
+    title: string,
+    text: string): void {
     Swal.fire({
       icon,
       title,
       text,
       confirmButtonColor: '#0d6efd',
       timer: icon === 'success' ? 2000 : 3000
+    });
+  }
+  showDetail(jobTitle: JobTitle): void {
+    this.dialog.open(DetalleComponent, {
+      width: '1200px',
+      data: { jobTitle }
     });
   }
 }

@@ -1,0 +1,48 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Detalle del Empleado #{{employee.employeeId}}</mat-card-title>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>
+        <span matListItemTitle>Nombre Completo</span>
+        <span matListItemLine>{{employee.firstName}} {{employee.lastName}}</span>
+      </mat-list-item>
+      
+      <mat-list-item>
+        <span matListItemTitle>Email</span>
+        <span matListItemLine>{{employee.email}}</span>
+      </mat-list-item>
+      
+      <mat-list-item>
+        <span matListItemTitle>Teléfono</span>
+        <span matListItemLine>{{employee.phoneNumber}}</span>
+      </mat-list-item>
+      
+      <mat-list-item>
+        <span matListItemTitle>Fecha de Contratación</span>
+        <span matListItemLine>{{employee.hireDate | date:'dd/MM/yyyy'}}</span>
+      </mat-list-item>
+      
+      <mat-list-item>
+        <span matListItemTitle>Salario</span>
+        <span matListItemLine>{{employee.salary | currency:'USD':'symbol':'1.2-2'}}</span>
+      </mat-list-item>
+      
+      <mat-list-item>
+        <span matListItemTitle>Departamento</span>
+        <span matListItemLine>{{departmentName}}</span>
+      </mat-list-item>
+      
+      <mat-list-item>
+        <span matListItemTitle>Puesto de Trabajo</span>
+        <span matListItemLine>{{jobTitleName}}</span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  
+  <mat-card-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+  </mat-card-actions>
+</mat-card>
